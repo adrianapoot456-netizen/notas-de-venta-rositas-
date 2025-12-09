@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>Notas Rositas</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- jsPDF + autotable -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+
+  <!-- Firebase (modular, import inside script.js) -->
+</head>
+<body>
+
+  <!-- LOGIN / REGISTRO (pantalla completa) -->
+  <section id="loginScreen" class="pantalla centrado">
+    <div class="card-login">
+      <h2>Bienvenida — Notas Rositas</h2>
+
+      <label for="emailInput">Correo</label>
+      <input id="emailInput" type="email" placeholder="correo@ejemplo.com" />
+
+      <label for="passwordInput">Contraseña</label>
+      <input id="passwordInput" type="password" placeholder="Contraseña" />
+
+      <label for="empresaReg">Nombre de la empresa (para tu cuenta)</label>
+      <input id="empresaReg" type="text" placeholder="Mi negocio bonito ✨" />
+
+      <button id="btnLogin" class="btn btn-primary">Iniciar sesión</button>
+      <button id="btnRegister" class="btn btn-sec">Crear cuenta</button>
+
+      <p style="margin-top:10px;font-size:0.9rem;color:#666">
+        Al crear cuenta se guarda tu nombre de empresa y catálogo en la nube.
+      </p>
+    </div>
+  </section>
+
+  <!-- APP (oculta hasta login) -->
+  <section id="appScreen" class="pantalla" style="display:none;">
+    <div id="pantallaCatalogo" class="container" style="padding-top:30px; padding-bottom:60px;">
+
+      <div class="card-catalogo">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+          <div>
+            <h1 class="tituloEmpresa" id="empresaTitulo">Mi empresa</h1>
+            <div style="font-size:0.95rem;color:#666">Usuario: <span id="usuarioEmail"></span></div>
+          </div>
+
+          <div style="display:flex;gap:10px">
+            <button id="btnLogout" class="btn btn-sec">Cerrar sesión</button>
+            <button id="btnEditarEmpresa" class="btn btn-sm btn-primary">Editar empresa</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-catalogo" style="margin-top:18px">
+        <label>Cliente:</label>
+        <input id="cliente" type="text" placeholder="Nombre del cliente" />
+
+        <label>Fecha:</label>
+        <input id="fecha" type="date" />
+
+        <h3 style="margin-top:10px">Catálogo de Productos</h3>
+
+        <div class="inputsRow">
+          <input id="nuevoProducto" type="text" placeholder="Nuevo producto..." />
+          <input id="nuevoPrecio" type="number" placeholder="Precio" step="0.01" />
+          <button id="btnAgregarCatalogo" class="btn btn-primary">Añadir</button>
+        </div>
+
+        <div style="display:flex;gap:10px;margin-bottom:12px">
+          <select id="producto" style="flex:1"></select>
+          <input id="precio" type="number" placeholder="Precio" step="0.01" style="width:120px" />
+          <input id="cantidad" type="number" placeholder="Cantidad" style="width:120px" />
+          <button id="btnAgregarProducto" class="btn btn-primary" style="width:120px">Agregar</button>
+        </div>
+      </div>
+
+      <div class="card-catalogo" style="margin-top:18px">
+        <h3>Productos agregados</h3>
+        <div id="tablaWrapper">
+          <table id="tabla" style="width:100%;border-collapse:collapse">
+            <thead>
+              <tr style="background:#007bff;color:white">
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Subtotal</th>
+              </tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+          </table>
+        </div>
+
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px">
+          <div>
+            <h4>Firma Digital</h4>
+            <canvas id="firma" width="300" height="120" style="background:white;border:1px solid #ddd;border-radius:8px"></canvas>
+            <div style="margin-top:8px">
+              <button id="limpiarFirma" class="btn btn-sec btn-sm">Limpiar firma</button>
+            </div>
+          </div>
+
+          <div style="text-align:right">
+            <h3 id="total">Total: $0.00</h3>
+            <div style="display:flex;flex-direction:column;gap:8px;width:220px">
+              <button id="btnGenerarPDF" class="btn btn-primary">Descargar PDF</button>
+              <button id="btnImprimir" class="btn btn-sec">Imprimir</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="max-width:900px;margin:24px auto;display:flex;gap:10px;flex-wrap:wrap">
+        <button id="btnAbrirEditor" class="btn btn-sec">Editar catálogo</button>
+        <button id="btnExportarCSV" class="btn btn-sec">Exportar catálogo</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- POPUP EDITAR CATALOGO -->
+  <div id="editorCatalogo" class="popup" style="display:none">
+    <div class="popup-content">
+      <h2>Editar Catálogo</h2>
+      <table style="width:100%;margin-bottom:12px">
+        <thead>
+          <tr><th>Producto</th><th>Precio</th><th>Acciones</th></tr>
+        </thead>
+        <tbody id="tbodyCatalogo"></tbody>
+      </table>
+      <div style="display:flex;gap:10px;justify-content:flex-end">
+        <button id="btnCerrarEditor" class="btn btn-sec">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

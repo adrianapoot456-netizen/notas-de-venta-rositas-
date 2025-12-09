@@ -1,0 +1,81 @@
+﻿/* ------------------------------------------------------
+   ESTILOS GENERALES (Rosita mejorado)
+------------------------------------------------------ */
+* { box-sizing: border-box; margin:0; padding:0; font-family: "Segoe UI", Roboto, "Poppins", sans-serif; }
+body { background: #fdeaf2; color:#333; min-height:100vh; }
+
+/* Pantallas */
+.pantalla { width:100%; min-height:100vh; padding:20px; }
+
+/* CENTRADO (login) */
+.centrado { display:flex; align-items:center; justify-content:center; }
+
+/* CARD LOGIN */
+.card-login {
+  background: #fff;
+  width:95%;
+  max-width:420px;
+  padding:26px;
+  border-radius:18px;
+  border: 2px solid #f8b6ca;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  text-align:left;
+}
+.card-login h2 { color:#c95f88; margin-bottom:12px; text-align:center; }
+.card-login label { font-weight:600; color:#c95f88; font-size:0.95rem; margin-top:8px; display:block; }
+.card-login input { width:100%; padding:10px 12px; border-radius:10px; border:1px solid #f3a9c3; background:#fff7fb; margin-bottom:8px; }
+
+/* BOTONES */
+.btn { border:none; border-radius:10px; padding:10px 12px; cursor:pointer; font-weight:600; }
+.btn-primary { background: #f4a8c4; color:white; }
+.btn-primary:hover { background:#e68ab0; }
+.btn-sec { background:white; color:#c95f88; border:2px solid #f4a8c4; }
+.btn-sec:hover { background:#fce3ed; }
+.btn-sm { padding:8px 10px; font-size:0.95rem; }
+
+/* CONTENEDOR APP */
+.container { max-width: 1000px; margin: 18px auto; }
+
+/* Empresa / Header */
+.tituloEmpresa { color:#c95f88; font-size:1.6rem; font-weight:800; margin-bottom:6px; }
+
+/* CARD CATALOGO */
+.card-catalogo {
+  background:#fff;
+  border-radius:14px;
+  padding:16px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+  border: 2px solid #f8b6ca;
+  margin-bottom:16px;
+}
+
+/* Inputs fila */
+.inputsRow { display:flex; gap:10px; margin-top:8px; }
+.inputsRow input { flex:1; padding:10px;border-radius:10px;border:1px solid #f3a9c3;background:#fff7fb; }
+
+/* Select + small inputs */
+select, input[type="number"], input[type="date"], input[type="text"] {
+  padding:10px;border-radius:10px;border:1px solid #f3a9c3;background:#fff7fb;
+}
+
+/* Tabla productos */
+#tabla thead th { padding:10px; text-align:left; color:white; background:#c95f88; border-bottom:2px solid #fbd1df; }
+#tabla tbody td { padding:10px; border-bottom:1px dashed #fbd1df; }
+
+/* Total */
+#total { color:#c95f88; font-weight:700; margin-top:6px; }
+
+/* Firma */
+canvas { border-radius:8px; margin-top:8px; }
+
+/* PopUp editor */
+.popup { position:fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.45); display:flex; justify-content:center; align-items:center; z-index:9999; }
+.popup-content { background:white; width:95%; max-width:720px; padding:18px; border-radius:12px; }
+
+/* Responsive */
+@media (max-width:720px) {
+  .inputsRow { flex-direction:column; }
+  .card-login { padding:18px; }
+  .tituloEmpresa { font-size:1.2rem; }
+  #tabla thead th, #tabla tbody td { font-size:0.95rem; }
+}
